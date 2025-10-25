@@ -1,7 +1,7 @@
 import { Elysia, file } from "elysia";
 
 const app = new Elysia()
-  .get("/", "Hello Elysia")
+  .get("/", "Hello Deno + Elysia")
   .get("/hello/:someone", ({ params: { someone } }) => `Hello, ${someone}!`)
   .get("/blob", file("blob.txt"))
   .get("/user/:id", ({ params: { id } }) => id)
