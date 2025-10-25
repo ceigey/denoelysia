@@ -1,5 +1,24 @@
 # Elysia on Deno Deploy (Example)
 
+## Quick DIY
+
+This is quite trivial to set up, the main takeaway:
+
+**Do not use `.listen(...)`, export the WinterTC standard `app` instead.**
+
+```ts
+import { Elysia, file } from 'elysia'
+
+const app = new Elysia().get('/', 'Hello Elysia')
+
+export default app
+```
+
+That _should_ be all you need to do that's "off the beaten course".
+
+But below are more comprehensive details & steps and alternatives.
+
+
 ## Prereqs
 
 - Deno CLI tool, version >= 2.5
@@ -141,3 +160,43 @@ deno serve --watch app.ts
 ```
 
 And you can get rid of `main.ts` and `main_test.ts` at this point.
+
+## Using Nitro instead
+
+_Alternatively: See the Elysia docs for
+[how to integrate with Nuxt](https://elysiajs.com/integrations/nuxt.html),
+which bypasses this section a bit_.
+
+In case you need server-side Vite for some reason,
+or you want to add Elysia to a Nuxt app:
+
+Nitro v3 (currently in alpha, as of writing) has some docs already up,
+and these show examples of using
+[Elysia with Nitro on the homepage](https://v3.nitro.build/),
+and [deploying Nitro to Deno Deploy](https://v3.nitro.build/deploy/providers/deno-deploy).
+
+_However_, this should **already be possible with Nitro v2/Nuxt v3+**.
+
+In fact you can always hedge your bets, set up a Nuxt app,
+add Elysia to the backend, then do something like set up
+Elysia's [Eden Treaty](https://elysiajs.com/eden/treaty/overview)
+and now you have a full-stack app with a typesafe client-server
+API.
+
+This of course assumes you like Vue :)
+
+(React should be easier to deploy with Nitro)
+
+## What about Deno Fresh?
+
+Deno Fresh has a new H3/Hono like API, so you could always use that
+for a full-stack app instead. But I've found Fresh's vite plugin
+doesn't seem to play well with Elysia, so I would avoid mixing
+those two together.
+
+I'd recommend blending Elysia with Astro instead:
+
+[Elysia Astro integration docs](https://elysiajs.com/integrations/astro.html#integration-with-astro)
+
+You'll get similar capabilities to Deno Fresh (interactive islands etc),
+and currently the Astro ecosystem is much more mature.
