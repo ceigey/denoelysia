@@ -136,7 +136,7 @@ help i'm trapped in javascript
 
 And now you can edit the `dev` task in your `deno.json` to say this instead:
 
-```json
+```sh
 deno serve --watch app.ts
 ```
 
