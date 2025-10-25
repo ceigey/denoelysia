@@ -1,0 +1,10 @@
+{
+  "tasks": {
+    "dev": "deno serve --watch app.ts",
+    "dev-all": "deno serve -A --watch app.ts"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1",
+    "elysia": "npm:elysia@^1.4.13"
+  }
+}
